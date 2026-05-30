@@ -359,6 +359,7 @@ const getLastUpdateTime = async (req, res) => {
       ) as all_updates
     `;
     const result = await pool.query(query);
+    const lastUpdate = result.rows[0]?.last_update; 
     const responseData = {
       lastUpdate: lastUpdate || new Date().toISOString(),
       formatted: lastUpdate ? formatLastUpdate(lastUpdate) : 'Agora'
