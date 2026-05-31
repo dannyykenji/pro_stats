@@ -15,7 +15,7 @@ jobs:
           echo "Sincronizando agenda de partidas..."
           
           # Fazer requisição POST para o endpoint de sincronização
-          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${{ secrets.API_BASE_URL }}api/schedule/sync" \
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${{ secrets.API_BASE_URL }}/api/schedule/sync" \
             -H "Content-Type: application/json")
           
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
@@ -25,9 +25,9 @@ jobs:
           echo "$BODY"
           
           if [ "$HTTP_CODE" -eq 200 ]; then
-            echo "✅ Sincronização de partidas concluída com sucesso!"
+            echo "Sincronização de partidas concluída com sucesso!"
             exit 0
           else
-            echo "❌ Erro na sincronização (HTTP $HTTP_CODE)"
+            echo "Erro na sincronização (HTTP $HTTP_CODE)"
             exit 1
           fi
