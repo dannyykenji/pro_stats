@@ -6,6 +6,7 @@ on:
         description: 'Nível de log'
         required: false
         default: 'info'
+        
   push:
     branches:
       - main
